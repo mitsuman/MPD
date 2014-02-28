@@ -43,6 +43,7 @@
 #include "plugins/MpcdecDecoderPlugin.hxx"
 #include "plugins/FluidsynthDecoderPlugin.hxx"
 #include "plugins/SidplayDecoderPlugin.hxx"
+#include "plugins/GenericDecoderPlugin.hxx"
 #include "util/Macros.hxx"
 
 #include <string.h>
@@ -106,6 +107,9 @@ const struct DecoderPlugin *const decoder_plugins[] = {
 #endif
 #ifdef HAVE_GME
 	&gme_decoder_plugin,
+#endif
+#ifdef HAVE_GENERIC
+	&generic_decoder_plugin,
 #endif
 	&pcm_decoder_plugin,
 	nullptr

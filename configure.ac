@@ -350,6 +350,11 @@ AC_ARG_ENABLE(gme,
 		[enable Blargg's game music emulator plugin]),,
 	enable_gme=auto)
 
+AC_ARG_ENABLE(generic,
+	AS_HELP_STRING([--enable-generic],
+		[enable generic plugin]),,
+	enable_generic=auto)
+
 AC_ARG_ENABLE(httpd-output,
 	AS_HELP_STRING([--enable-httpd-output],
 		[enables the HTTP server output]),,
@@ -1087,6 +1092,12 @@ if test x$enable_gme = xyes; then
 	AC_DEFINE(HAVE_GME, 1, [Define for gme support])
 fi
 
+dnl ---------------------------------- Generic plugin  -----------------------
+AM_CONDITIONAL(HAVE_GENERIC, test x$enable_generic = xyes)
+if test x$enable_generic = xyes; then
+	AC_DEFINE(HAVE_GENERIC, 1, [Define for generic support])
+fi
+
 dnl ---------------------------------- libmad ---------------------------------
 MPD_AUTO_PKG_LIB(mad, MAD, [mad],
 	mad, mad_stream_init, [-lmad], [],
@@ -1281,6 +1292,7 @@ if
 	test x$enable_ffmpeg = xno &&
 	test x$enable_flac = xno &&
 	test x$enable_fluidsynth = xno &&
+	test x$enable_generic = xno &&
 	test x$enable_mad = xno &&
 	test x$enable_mikmod = xno; then
 	test x$enable_modplug = xno &&
@@ -1748,6 +1760,7 @@ results(ffmpeg, [FFMPEG])
 results(flac, [FLAC])
 results(fluidsynth, [FluidSynth])
 results(gme, [GME])
+results(generic, [GENERIC])
 printf '\n\t'
 results(sndfile, [libsndfile])
 results(mikmod, [MikMod])

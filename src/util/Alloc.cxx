@@ -42,6 +42,16 @@ xalloc(size_t size)
 }
 
 void *
+xrealloc(void *ptr, size_t size)
+{
+	void *p = realloc(ptr, size);
+	if (gcc_unlikely(p == nullptr))
+		oom();
+
+	return p;
+}
+
+void *
 xmemdup(const void *s, size_t size)
 {
 	void *p = xalloc(size);

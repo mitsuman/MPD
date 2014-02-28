@@ -648,6 +648,7 @@ libdecoder_plugins_a_CPPFLAGS = $(AM_CPPFLAGS) \
 	$(AUDIOFILE_CFLAGS) \
 	$(LIBMIKMOD_CFLAGS) \
 	$(GME_CFLAGS) \
+	$(GENERIC_CFLAGS) \
 	$(SIDPLAY_CFLAGS) \
 	$(FLUIDSYNTH_CFLAGS) \
 	$(WILDMIDI_CFLAGS) \
@@ -667,6 +668,7 @@ DECODER_LIBS = \
 	$(SNDFILE_LIBS) \
 	$(AUDIOFILE_LIBS) $(LIBMIKMOD_LIBS) \
 	$(GME_LIBS) \
+	$(GENERIC_LIBS) \
 	$(SIDPLAY_LIBS) \
 	$(FLUIDSYNTH_LIBS) \
 	$(WILDMIDI_LIBS) \
@@ -814,6 +816,11 @@ endif
 if HAVE_GME
 libdecoder_plugins_a_SOURCES += \
 	src/decoder/plugins/GmeDecoderPlugin.cxx src/decoder/plugins/GmeDecoderPlugin.hxx
+endif
+
+if HAVE_GENERIC
+libdecoder_plugins_a_SOURCES += \
+	src/decoder/plugins/GenericDecoderPlugin.cxx src/decoder/plugins/GenericDecoderPlugin.hxx
 endif
 
 # encoder plugins

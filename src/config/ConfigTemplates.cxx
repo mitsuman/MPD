@@ -78,6 +78,7 @@ const ConfigTemplate config_templates[] = {
 	{ "filter", true, true },
 	{ "database", false, true },
 	{ "neighbors", true, true },
+	{ "generic_decoder", true, true },
 };
 
 static constexpr unsigned n_config_templates =

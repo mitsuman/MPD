@@ -35,6 +35,16 @@ void *
 xalloc(size_t size);
 
 /**
+ * Reallocate memory.  Use free() to free it.
+ *
+ * This function never fails; in out-of-memory situations, it aborts
+ * the process.
+ */
+gcc_malloc
+void *
+xrealloc(void *ptr, size_t size);
+
+/**
  * Duplicate memory.  Use free() to free it.
  *
  * This function never fails; in out-of-memory situations, it aborts

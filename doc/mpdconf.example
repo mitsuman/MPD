@@ -443,3 +443,43 @@ input {
 #
 ###############################################################################
 
+
+################### Generic input decoders ####################################
+#
+# Using the generic decoder support, you can play files that are
+# not supported by native input decoders. For example, some distributions
+# may choose to disable certain decoders because they're protected by patents
+# and the like.
+#
+# This works by calling an external program to decode a file which is
+# sent to its standard input. The decoder should send raw PCM output to
+# stdout in the format you descript in the generic_decoder block. It's
+# called with two arguments, like this:
+#
+# <program> "filerawdecode" <filename>
+#
+# If you additionally want to decode something comparable to ID3 tags,
+# you can also configure a script specified <program>. It is called with
+# three arguments, like this:
+#
+# <program> "tagread" <tagname> <filename>
+#
+# For each file type, you have to supply:
+#
+#   * suffix
+#   * pcm_format
+#   * program
+#
+# generic_decoder {
+#                 suffix               "wav"
+#                 pcm_format           "44100:16:2"
+#                 program              "/usr/local/bin/wav_decoder.sh"
+# }
+#
+# generic_decoder {
+#                 suffix               "mdx"
+#                 pcm_format           "44100:16:2"
+#                 program              "/usr/local/bin/mdx_decoder.sh"
+# }
+#
+###############################################################################
